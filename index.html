@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leitura de notas</title>
+  <style>
+    * {
+      font-size: 1.5rem;
+      cursor: default;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 300px;
+      background-color: lightgrey;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .img-box {
+      width: 400px;
+    }
+    img {
+      width: 100%;
+      object-fit: contain;
+      box-sizing: border-box;
+    }
+    #nota-aqui {
+      font-weight: bold;
+      color: darkred;
+      font-size: 1.7rem;
+    }
+    button {
+      padding: 4px;
+      width: 50%;
+    }
+    .esconder {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="img-box"><img src=""></div>
+    <div><span>Nota:</span><span id="nota-aqui"></span  ></div>
+    <button onclick="gerarNovaNota()">=></button>
+  </div>
+
+  <script>
+    const notas = [
+      {nome: 'Lá', oitava: 1, img:'la1.png'},
+      {nome: 'Si', oitava: 1, img:'si1.png'},
+      {nome: 'Dó', oitava: 1, img:'do1.png'},
+      {nome: 'Ré', oitava: 1, img:'re1.png'},
+      {nome: 'Mi', oitava: 1, img:'mi1.png'},
+      {nome: 'Fá', oitava: 1, img:'fa1.png'},
+      {nome: 'Sol', oitava: 1, img:'sol1.png'},
+      {nome: 'Lá', oitava: 2, img:'la2.png'},
+      {nome: 'Si', oitava: 2, img:'si2.png'},
+      {nome: 'Dó', oitava: 2, img:'do2.png'},
+      {nome: 'Ré', oitava: 2, img:'re2.png'},
+      {nome: 'Mi', oitava: 2, img:'mi2.png'},
+      {nome: 'Fá', oitava: 2, img:'fa2.png'},
+      {nome: 'Sol', oitava: 2, img:'sol2.png'},
+      {nome: 'Lá', oitava: 3, img:'la3.png'},
+      {nome: 'Si', oitava: 3, img:'si3.png'},
+      {nome: 'Dó', oitava: 3, img:'do3.png'},
+    ]
+    const nomeNota = document.querySelector('#nota-aqui')
+    nomeNota.classList.add('esconder')
+    let mostrarNome = false
+    let nota = {}
+    function gerarNovaNota(){
+      const notaEscondida = nomeNota.classList.contains('esconder')
+      if (!mostrarNome){
+        nota = notas[Math.floor(Math.random() * notas.length)]
+        const img = document.querySelector('img')
+        img.src = 'imagens/' + nota.img
+        nomeNota.classList.add('esconder')
+      }
+      if (mostrarNome){
+        nomeNota.textContent = nota.nome
+        nomeNota.classList.remove('esconder')
+        mostrarNome = false
+        return
+      }
+      mostrarNome = true
+    }
+    gerarNovaNota()
+  </script>
+</body>
+</html>
