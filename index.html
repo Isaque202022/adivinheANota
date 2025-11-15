@@ -74,7 +74,7 @@
 
     const nomeNota = document.querySelector('#nota-aqui')
     nomeNota.classList.add('esconder')
-    
+
     let mostrarNome = false
     let nota = {}
 
@@ -101,6 +101,11 @@
       }
       let indice = gerarN()
       let nParaRetornar = listaOrdem[indice]
+
+      if (notas[nParaRetornar]==nota){
+        indice = listaOrdem.length-1
+        nParaRetornar = listaOrdem[indice]
+      }
 
       listaOrdem.splice(indice, 1)
       if (listaOrdem.length==0) for (let n in notas) {listaOrdem.push(Number(n))}
