@@ -69,14 +69,19 @@
       {nome: 'Si', oitava: 3, img:'si3.png'},
       {nome: 'Dó', oitava: 3, img:'do3.png'},
     ]
+    const listaOrdem = []
+    for (let n in notas) {listaOrdem.push(Number(n))}
+
     const nomeNota = document.querySelector('#nota-aqui')
     nomeNota.classList.add('esconder')
+    
     let mostrarNome = false
     let nota = {}
+
     function gerarNovaNota(){
       const notaEscondida = nomeNota.classList.contains('esconder')
       if (!mostrarNome){
-        nota = notas[Math.floor(Math.random() * notas.length)]
+        nota = notas[numAleatorio()]
         const img = document.querySelector('img')
         img.src = 'imagens/' + nota.img
         nomeNota.classList.add('esconder')
@@ -90,6 +95,17 @@
       mostrarNome = true
     }
     gerarNovaNota()
+    function numAleatorio() {
+      function gerarN() {
+        return Math.floor(Math.random() * listaOrdem.length)
+      }
+      let indice = gerarN()
+      let nParaRetornar = listaOrdem[indice]
+
+      listaOrdem.splice(indice, 1)
+      if (listaOrdem.length==0) for (let n in notas) {listaOrdem.push(Number(n))}
+      return nParaRetornar
+    }
   </script>
 </body>
 </html>
